@@ -1,17 +1,26 @@
 
 
 function menu(){
-    const menuIco = document.getElementById('menu-ico');
-
-    const menuMain = document.getElementById('menu-main');
-
+    var menuIco, menuMain;
+    menuIco = document.getElementById('menu-ico');
+    menuMain = document.getElementById('menu-main');
     menuIco.addEventListener('click', (e) => {
         menuMain.classList.toggle('menu__active');
     });
 }
 
-function inicio(){
-    menu();
+function btnHome(){
+    var btnMobile, btnDesktop;
+    btnMobile = document.getElementById('btnMobile');
+    btnDesktop = document.getElementById('btnDesktop');
+    [btnMobile, btnDesktop].forEach( btn.addEventListener('click', ()=>{
+        
+    }));
 }
 
-document.addEventListener('DOMContentLoaded', inicio, false);
+function start(){
+    menu();
+    /* btnHome(); */
+}
+
+document.addEventListener('DOMContentLoaded', start, false);
