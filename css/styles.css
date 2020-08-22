@@ -7,7 +7,7 @@
     --ico-width-height: 35px;
     --logo-width-height: 80px;
     --header-height-mobile: 11vmin;
-    --header-height-desktop: 10vmin;
+    --header-height-desktop: 12vmin;
     --menu-transition: 1s;
 }
 
@@ -203,6 +203,101 @@ body{
     font-size: 1.6em;
 }
 
+/*---form-section----*/
+
+.section-contact{
+    width: 90%;
+    height: 750px;
+    display: flex;
+    flex-direction: column;
+    margin: 2em auto;
+    border: 2px solid orange;
+    border-radius: .5em;
+}
+
+.form-title{
+    text-transform: uppercase;
+    text-align: center;
+    margin: 1rem 0;
+    border: none;
+}
+
+.contact-info{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: .5rem;
+}
+
+.contact-info p{
+    margin-bottom: .2rem;
+}
+
+.map-container{
+    margin: .5rem auto;
+    width: 320px;
+}
+
+.map{
+    height: 0;
+    padding-bottom: 56.25%;
+    position: relative;
+}
+
+.map iframe{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.form-container{
+    width: 100%;
+    padding: 0 1rem;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 350px;
+}
+
+.form-section{
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-label{
+    margin: .5rem;
+    text-transform: uppercase;
+    font-size: .9rem;
+}
+
+.form-input,
+.form-message{
+    min-width: 70%;
+    border: 2px solid var(--primary-color);
+    border-radius: .5rem;
+}
+
+.form-message{
+    resize: none;
+    min-height: 100px;
+}
+
+.form-summit{
+    width: 40%;
+    margin-left: 30%;
+    background-color: var(--primary-color);
+    border: none;
+    padding: .8rem;
+    border-radius: .5rem;
+    text-transform: uppercase;
+    color: var(--text-color);
+}
+
 /*------------ FOOTER --------------------*/
 .footer{
     margin-top: auto;
@@ -211,6 +306,7 @@ body{
     min-height: 12em;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .footer-container{
@@ -237,7 +333,7 @@ body{
 }
 
 .footer-text{
-    font-family: 'Marck Script', cursive;
+    font-family: 'Marck Script';
     font-size: 1.5em;
     padding: .5em;
 }
@@ -254,7 +350,7 @@ body{
 
 .social-fb-inst{
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     width: 100%;
 }
@@ -268,12 +364,12 @@ body{
 .social-partners{
     display: flex;
     justify-content: center;
-    /* align-items: ; */
+    align-items: center;
 }
 
 .partners{
-    width: 4.5em;
-    height: 4.5em;
+    width: 7em;
+    height: 7em;
     margin: 0 1em;
     padding: .5em;
     cursor: pointer;
@@ -284,6 +380,7 @@ body{
 
 
 @media screen and (min-width: 730px){
+    /*----MENU----*/
     .header{
         display: flex;
         justify-content: center;
@@ -313,7 +410,7 @@ body{
         align-items: center;
         width: var(--logo-width-height);
         height: var(--logo-width-height);
-        border: 3px double yellow;
+        border: 3px double var(--text-color);
         border-radius: 50%;
     }
     .logo__cursive{
@@ -336,6 +433,7 @@ body{
         border: none;
         text-align: center;
     }
+    /*----MAIN----*/
     .main-container{
         width: var(--width-desktop);
     }
@@ -350,6 +448,42 @@ body{
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-rows: 1fr 1fr;
     }
+    .section-contact:not(h2){
+        display: flex;
+        width: 70%;
+        height: 450px;
+        align-content: center;
+        border: 2px solid var(--primary-color);
+    }
+    .form-title{
+        background-color: var(--primary-color);
+        color: var(--text-color);
+        width: 100%;
+        margin: 0;
+    }
+    .info-form-container{
+        display: flex;
+        width: 100%;
+        height: 100%;
+    }
+    .contact-info{
+        max-width: 35%;
+        background-color: var(--primary-color);
+        color: var(--text-color);
+    }
+    .map-container{
+        width: 250px;
+    }
+    .form-container{
+        width: 65%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .form{
+        width: 80%;
+    }
+    /*----FOOTER-----*/
     .footer-container{
         flex-direction: row;
         width: var(--width-desktop);

@@ -1,4 +1,5 @@
-
+import { menu, searchSubString } from './utils.js';
+/* import { searchSubString } from './utils.js'; */
 
 function checkRadioBtn(){
     var vecBtnLabelRadio, vecDressers, vecTables, vecDesks, vecRoginals;
@@ -51,25 +52,9 @@ function setTypePrice(){
     vecProducts = document.querySelectorAll('.dresser, .table, .desk, .original');
     vecData = document.getElementsByTagName('data');
     for(i=0; i<vecProducts.length; i++){
-        vecProducts[i].querySelector('.img-title').textContent = vecData[i].dataset.tipo;
-        vecProducts[i].querySelector('.img-info').textContent = vecData[i].dataset.precio;
+        vecProducts[i].querySelector('.img-title').textContent += vecData[i].dataset.tipo;
+        vecProducts[i].querySelector('.img-info').textContent += vecData[i].dataset.precio;
     }
-}
-
-function searchSubString(text, subText, index){
-    console.log(text, subText);
-    var i, position, num;
-    num = index || 0;
-    for(position=num; position<=text.length - subText.length; position++){
-        i = 0;
-        while(i<subText.length && text[position+i] === subText[i]){
-            i++;
-        }
-        if(i === subText.length){
-            return position;
-        }
-    }
-    return -1;
 }
 
 function searchProducts(){
@@ -77,24 +62,23 @@ function searchProducts(){
     btnSearch = document.querySelector('.search-btn');
     textSearch = document.getElementById('textSearch');
     vecInfo = document.querySelectorAll('.img-title, .img-info');
-    btnSearch.addEventListener('click', () =>{
+    btnSearch.addEventListener('click', (e) =>{
         for(i=0; i<vecInfo.length; i+=2){
             type = searchSubString(vecInfo[i].textContent.toUpperCase(), textSearch.value.toUpperCase());
             price = searchSubString(vecInfo[i+1].textContent, textSearch.value);
             containerProduct = ((vecInfo[i].parentNode).parentNode).parentNode;
-            console.log(containerProduct);
             if(type === -1 && price === -1){
                 containerProduct.classList.add("inactive");
-                console.log("hola");
             }else{
                 containerProduct.classList.remove("inactive");
             }
         }
+        e.preventDefault();
     });
 }
 
-
 function start(){
+    menu();
     checkRadioBtn();
     setTypePrice();
     searchProducts();

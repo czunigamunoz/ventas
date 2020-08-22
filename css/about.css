@@ -7,7 +7,7 @@
     --ico-width-height: 35px;
     --logo-width-height: 80px;
     --header-height-mobile: 11vmin;
-    --header-height-desktop: 12vmin;
+    --header-height-desktop: 11vmin;
     --menu-transition: 1s;
 }
 
@@ -82,6 +82,7 @@ body{
     border-bottom: var(--border) solid var(--text-color);
     position: relative;
     padding: 1em;
+    /* background-color: brown; */
 }
 
 .menu-link{
@@ -100,7 +101,6 @@ body{
 /*---------------------------------------*/
 
 /*----------------MAIN----------------------*/
-
 .img{
     display: block;
     margin-left: auto;
@@ -119,141 +119,44 @@ body{
     height: auto;
 }
 
-.section-title{
+.introduction-container{
     display: flex;
     justify-content: center;
-    align-items: center;
+    margin: .5em;
+    min-width: 400px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.text-indroduction{
+    font-size: 1.2em;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.title-container{
+    display: flex;
+    justify-content: center;
+    margin: 1em auto;
 }
 
 .title{
+    border-bottom: 2px solid orange;
     font-size: 2em;
-    margin: .7em 0;
-    position: relative;
-    border-bottom: 3px solid orange;
-}
-
-.form{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.btn-radio-container{
-    display: inline-flex;
-    overflow: hidden;
-    border-radius: .5em;
-    /* -webkit-box-shadow: 5px 10px 23px 4px rgba(0,0,0,1);
-    -moz-box-shadow: 5px 10px 23px 4px rgba(0,0,0,1);
-    box-shadow: 5px 10px 23px 4px rgba(0,0,0,1); */
-    margin-bottom: .5em;
-}
-
-.radio-input{
-    display: none;
-}
-
-.radio-label{
-    padding: 1em;
-    color: var(--text-color);
-    background-color: var(--primary-color);
-    cursor: pointer;
-    font-size: .8em;
-    border-right: 1px solid var(--text-color);
-}
-
-.radio-label:last-child{
-    border-right: none;    
-}
-
-.radio-input:checked + .radio-label{
-    background-color: #39809f;
-}
-
-.inactive{
-    display: none;
-}
-
-.search-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-    min-height: 3em;
-    width: 20em;
-}
-
-.search{
-    border: 3px solid var(--primary-color);
-    border-radius: .5em;
-    width: 100%;
-    height: 100%;
-    padding: .4em;
-    color: var(--primary-color);
-    font-size: .9em;
-}
-
-.search-btn{
-    max-height: 100%;
-    background-color: transparent;
-    border: none;
-}
-
-.ico-search{
-    fill: var(--primary-color);
-}
-
-.section-products{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 1em;
-    padding-top: 0;
-}
-
-.products-container{
-    list-style: none;
-}
-
-.product{
-    padding: 0.5em;
-}
-
-.product{
-    position: relative;
-    width: 100%;
-    height: 300px;
-}
-
-.description-container{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: var(--text-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    opacity: 0;
-    transition: opacity 1s;
-}
-
-.description-container:hover{
-    opacity: 1;
-}
-
-.img-title{
     text-align: center;
-    font-size: 2em;
-    font-weight: bold;
 }
 
-.img-info{
-    font-size: 1.6em;
+.text-container{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1em;
+}
+
+.text-biography p{
+    margin-bottom: 2em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /*------------ FOOTER --------------------*/
@@ -332,10 +235,13 @@ body{
     padding: .5em;
     cursor: pointer;
 }
+
+
 /* --------------------------------------*/
 
 
 @media screen and (min-width: 730px){
+    /*----MENU----*/
     .header{
         display: flex;
         justify-content: center;
@@ -360,17 +266,13 @@ body{
         width: 50%;
     }
     .logo{
-        display: inline-flex;
+        display: flex;
         justify-content: center;
         align-items: center;
         width: var(--logo-width-height);
         height: var(--logo-width-height);
-        border: 3px double var(--text-color);
+        border: 4px double var(--text-color);
         border-radius: 50%;
-    }
-    .logo-text{
-        font-size: 2em;
-        color: var(--text-color);
     }
     .logo__cursive{
         font-size: 1.2em;
@@ -392,29 +294,29 @@ body{
         border: none;
         text-align: center;
     }
+    /*----MAIN----*/
     .main-container{
         width: var(--width-desktop);
-    }    
-    /* .section-products{
+    }
+    .img-top{
+        margin-top: 2em;
+    }
+    .img-container{
         display: flex;
         justify-content: center;
         align-items: center;
-    } */
-    .products-container{
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-template-rows: repeat(autofill, minmax(320px) 1fr);
     }
-    .radio-label{
-        position: relative;
-        align-self: center;
-        justify-content: center;
-        width: 150px;
-        text-align: center;
+    .text-indroduction{
+        font-size: 1.5em;
+    }
+    .title{
+        width: 300px;
+        margin-left: 40%;
+        font-size: 3em;
+    }
 
 
-        /* font-size: 1em; */
-    }
+    /*----FOOTER-----*/
     .footer-container{
         flex-direction: row;
         width: var(--width-desktop);

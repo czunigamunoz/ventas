@@ -1,26 +1,25 @@
+import { menu } from './utils.js';
 
+var imgSlider, indexSlider;
 
-function menu(){
-    var menuIco, menuMain;
-    menuIco = document.getElementById('menu-ico');
-    menuMain = document.getElementById('menu-main');
-    menuIco.addEventListener('click', (e) => {
-        menuMain.classList.toggle('menu__active');
-    });
-}
+imgSlider = ['./assets/img/slider/1.jpg', './assets/img/slider/2.jpg', './assets/img/slider/3.jpg'];
+indexSlider=0;
 
-function btnHome(){
-    var btnMobile, btnDesktop;
-    btnMobile = document.getElementById('btnMobile');
-    btnDesktop = document.getElementById('btnDesktop');
-    [btnMobile, btnDesktop].forEach( btn.addEventListener('click', ()=>{
-        
-    }));
+function slider(){
+    document.querySelector('.img-slide').src = imgSlider[indexSlider];    
+    if(indexSlider<imgSlider.length -1){
+        indexSlider++;
+    }else{
+        indexSlider=0;
+    }
+    setTimeout(slider, 5000);
 }
 
 function start(){
     menu();
-    /* btnHome(); */
+    slider();
 }
 
 document.addEventListener('DOMContentLoaded', start, false);
+
+/* assets/img/slider/1.jpg */
