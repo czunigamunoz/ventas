@@ -5,7 +5,7 @@
         $Server = "localhost";
         $Based = "ventas";
         $Usser = "usserventas";
-        $Password = "Web.Dbt1";
+        $Password = "XXXXXXX";
 
         $connection = new mysqli($Server, $Usser, $Password, $Based);
 
