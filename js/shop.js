@@ -1,87 +1,96 @@
-import { menu, searchSubString } from './utils.js';
-/* import { searchSubString } from './utils.js'; */
+import { menu, searchSubString, titleLinkHome } from './utils.js';
 
-function checkRadioBtn(){
-    var vecBtnLabelRadio, vecDressers, vecTables, vecDesks, vecRoginals;
-    vecBtnLabelRadio = document.querySelectorAll('.radio-label');
-    vecDressers= document.querySelectorAll('.dresser');
-    vecTables = document.querySelectorAll('.table');
-    vecDesks = document.querySelectorAll('.desk');
-    vecRoginals = document.querySelectorAll('.original');
-    vecBtnLabelRadio.forEach(btn => {
-        btn.addEventListener('click', ()=>{
-            console.log(btn.textContent);
-            switch (btn.textContent) {
-                case "Dressers & Slideboards":
-                    vecDressers.forEach(dress => dress.classList.remove("inactive"));
-                    vecTables.forEach(table => table.classList.add("inactive"));
-                    vecDesks.forEach(desk => desk.classList.add("inactive"));
-                    vecRoginals.forEach(original => original.classList.add("inactive"));
-                    break;
-                case "Tables & Chairs":
-                    vecTables.forEach(table => table.classList.remove("inactive"));
-                    vecDressers.forEach(dress => dress.classList.add("inactive"));
-                    vecDesks.forEach(desk => desk.classList.add("inactive"));
-                    vecRoginals.forEach(original => original.classList.add("inactive"));
-                    break;
-                case "Desks":
-                    vecDesks.forEach(desk => desk.classList.remove("inactive"));
-                    vecDressers.forEach(dress => dress.classList.add("inactive"));
-                    vecTables.forEach(table => table.classList.add("inactive"));
-                    vecRoginals.forEach(original => original.classList.add("inactive"));
-                    break;
-                case "Original Finishes":
-                    vecRoginals.forEach(original => original.classList.remove("inactive"));
-                    vecDressers.forEach(dress => dress.classList.add("inactive"));
-                    vecTables.forEach(table => table.classList.add("inactive"));
-                    vecDesks.forEach(desk => desk.classList.add("inactive"));
-                    break;          
-                default:
-                    vecDressers.forEach(dress => dress.classList.remove("inactive"));
-                    vecTables.forEach(table => table.classList.remove("inactive"));
-                    vecDesks.forEach(desk => desk.classList.remove("inactive"));
-                    vecRoginals.forEach(original => original.classList.remove("inactive"));
-                    break;
+/*------------- GLOBAL VARIABLES --------------------*/
+var textSearch, vecInfo, vecPro, vecSelect, btnSearch;
+textSearch = document.getElementById('textSearch');
+vecSelect = document.querySelectorAll('.select-items');
+vecInfo = document.querySelectorAll('.img-info, .img-price');
+vecPro = document.querySelectorAll('.product-item');
+btnSearch = document.querySelector('.search-btn');
+/*---------------------------------------------------*/
+
+/* 
+ks = Cantidad de select diferentes de 0
+ki = Cantidad de informacion por producto
+ka = Cantidad de aciertos de los select
+Segundo for s = Cuenta la cantidad de selectores que hay
+ */
+
+function filterSearch(){
+    var containerProduct, i, s, p, ks=0, ki=0, ka;
+    textSearch.value = "";
+    for(s=0; s<vecSelect.length; s++){
+        if(vecSelect[s].selectedIndex != 0){
+            ks++;
+        }
+    }
+    ki = vecInfo.length / vecPro.length;
+    for(p=0; p<vecInfo.length; p+=ki){
+        ka=0;
+        for(s=0; s<vecSelect.length; s++){
+            i = vecSelect[s].selectedIndex;
+            if(i != 0){
+                if(vecInfo[p+s+1].innerHTML == vecSelect[s].options[i].text){
+                    ka++;
+                }                
             }
-        });        
-    });
+        }
+        containerProduct = ((vecInfo[p].parentNode).parentNode).parentNode;
+        if(ka === ks){
+            containerProduct.classList.remove("inactive");
+        }else{
+            containerProduct.classList.add("inactive");
+        }
+    }    
 }
 
-function setTypePrice(){
-    var i, vecProducts, vecData;
-    vecProducts = document.querySelectorAll('.dresser, .table, .desk, .original');
-    vecData = document.getElementsByTagName('data');
-    for(i=0; i<vecProducts.length; i++){
-        vecProducts[i].querySelector('.img-title').textContent += vecData[i].dataset.tipo;
-        vecProducts[i].querySelector('.img-info').textContent += vecData[i].dataset.precio;
-    }
+function clearFilterSearch(){
+    var btnClean, k;
+    btnClean = document.querySelector('.btn-clean');
+    btnClean.addEventListener('click', (e) =>{
+        for(k=0; k<vecSelect.length; k++){
+            vecSelect[k].selectedIndex = 0;
+        }
+        e.preventDefault();
+        filterSearch();
+    });
 }
 
 function searchProducts(){
-    var btnSearch, textSearch, vecInfo, type, price, containerProduct, i;
-    btnSearch = document.querySelector('.search-btn');
-    textSearch = document.getElementById('textSearch');
-    vecInfo = document.querySelectorAll('.img-title, .img-info');
-    btnSearch.addEventListener('click', (e) =>{
-        for(i=0; i<vecInfo.length; i+=2){
-            type = searchSubString(vecInfo[i].textContent.toUpperCase(), textSearch.value.toUpperCase());
-            price = searchSubString(vecInfo[i+1].textContent, textSearch.value);
-            containerProduct = ((vecInfo[i].parentNode).parentNode).parentNode;
-            if(type === -1 && price === -1){
-                containerProduct.classList.add("inactive");
-            }else{
-                containerProduct.classList.remove("inactive");
-            }
+    var containerProduct, i, k, ki=0, ti;
+    for (k = 0; k < vecSelect.length; k++) {
+        vecSelect[k].selectedIndex = 0;
+    }
+    ki = vecInfo.length / vecPro.length;
+    for (k = 0; k < vecInfo.length; k += ki) {
+        ti = -1;
+        for (i = 0; i < ki && ti === -1; i++) {
+            ti = searchSubString(vecInfo[k + i].innerHTML.toUpperCase(), textSearch.value.toUpperCase());
         }
-        e.preventDefault();
-    });
+        containerProduct = ((vecInfo[k].parentNode).parentNode).parentNode;
+        if (ti === -1) {
+            containerProduct.classList.add("inactive");
+        } else {
+            containerProduct.classList.remove("inactive");
+        }
+    }
+}
+
+function keyUp(event){
+    if(event.keyCode===13){
+        searchProducts();
+    }
 }
 
 function start(){
     menu();
-    checkRadioBtn();
-    setTypePrice();
-    searchProducts();
+    titleLinkHome();
+    clearFilterSearch();
+    textSearch.addEventListener('keyup', keyUp, false);
+    btnSearch.addEventListener('click', searchProducts, false);
+    vecSelect.forEach(select => {
+        select.addEventListener('change', filterSearch, false);
+    });
 }
 
 document.addEventListener('DOMContentLoaded', start, false);

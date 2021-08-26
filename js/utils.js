@@ -1,4 +1,8 @@
-export function menu(){
+export {menu, searchSubString, titleLinkHome, adminAcces};
+
+
+
+function menu(){
     var menuIco, menuMain;
     menuIco = document.getElementById('menu-ico');
     menuMain = document.getElementById('menu-main');
@@ -7,8 +11,7 @@ export function menu(){
     });
 }
 
-export function searchSubString(text, subText, index){
-    console.log(text, subText);
+function searchSubString(text, subText, index){
     var i, position, num;
     num = index || 0;
     for(position=num; position<=text.length - subText.length; position++){
@@ -21,4 +24,22 @@ export function searchSubString(text, subText, index){
         }
     }
     return -1;
+}
+
+function titleLinkHome(){
+    var title;
+    title = document.querySelectorAll('.menu-title');
+    title.forEach(btn =>{
+        btn.addEventListener('click', ()=>{
+            location.href = 'index.php';
+        });
+    });
+}
+
+function adminAcces(){
+    var logo;
+    logo = document.getElementById('logo-text');
+    logo.addEventListener('click', (e) =>{
+        location.href = "login.php";
+    });
 }

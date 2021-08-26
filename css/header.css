@@ -1,0 +1,157 @@
+:root{
+    --width-desktop: 1200px;
+    --primary-color: #194151;
+    --secundary-color: #698e92;
+    --text-color: #fff;
+    
+    --ico-width-height: 35px;
+    --logo-width-height: 80px;
+    --header-height-mobile: 11vmin;
+    --header-height-desktop: 12vmin;
+}
+
+@font-face{
+    font-family: "Marck Script";
+    src: url("../assets/fonts/MarckScript-Regular.ttf");
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+}
+
+/* ---------------HEADER -----------------------*/
+
+.header{
+    background-color: var(--primary-color);
+    width: 100%;
+    height: var(--header-height-mobile);
+}
+
+.menu-mobile{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-text,
+.menu-link,
+.footer-text{
+    color: var(--text-color);
+}
+
+.menu-desktop{
+    display: none;
+}
+
+.menu-title{
+    cursor: pointer;
+}
+
+.ico{
+    width: var(--ico-width-height);
+    height: var(--ico-width-height);
+    padding: .3em;
+    fill: var(--text-color);
+    cursor: pointer;
+}
+
+.menu-main{
+    background-color: var(--primary-color);
+    padding-left: 0;
+    margin: 0;
+    list-style: none;
+    position: relative;
+    z-index: 100;
+
+    transform: translateX(-100%);
+    transition: transform 1s;
+}
+
+.menu__active{
+    transform: translateX(0);
+    transition: transform 1s;
+}
+
+.menu-item{
+    border-bottom: 2px solid var(--text-color);
+    position: relative;
+    padding: 1em;
+}
+
+.menu-link{
+    text-decoration: none;
+    display: block;
+    padding: .4em;
+}
+
+.menu-link:hover{
+    transform: scale(1.2);
+    transition: 1s;
+    border-bottom: 2px solid orange;
+    border-radius: 0.5em;
+}
+
+@media screen and (min-width: 730px){
+    /*----HEADER----*/
+    .header{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: var(--header-height-desktop);
+    }
+    .header-container{
+        width: var(--width-desktop);
+    }
+    .menu-mobile{
+        display: none;
+    }
+    .menu-container{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .menu-desktop{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 50%;
+    }
+    .logo{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: var(--logo-width-height);
+        height: var(--logo-width-height);
+        border: 5px double var(--text-color);
+        border-radius: 50%;
+    }
+    .logo__cursive{
+        font-size: 1.2em;
+        font-family: 'Marck Script';
+    }
+    .title-container{
+        display: flex;
+        flex-direction: column;
+    }
+    .menu-title{
+        font-size: 2em;
+    }
+    .menu-main{
+        transform: translateX(0);
+        display: inline-flex;
+    }
+    .menu-item{
+        display:block;
+        border: none;
+        text-align: center;
+    }
+}

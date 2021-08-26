@@ -1,4 +1,4 @@
-import { menu } from './utils.js';
+import { menu, titleLinkHome } from './utils.js';
 
 var imgSlider, indexSlider;
 
@@ -18,8 +18,7 @@ function slider(){
 function start(){
     menu();
     slider();
+    titleLinkHome();
 }
 
 document.addEventListener('DOMContentLoaded', start, false);
-
-/* assets/img/slider/1.jpg */
